@@ -11,6 +11,7 @@ const appointmentOptionsRouter = require("./Routes/AppointmentOptions/appointmen
 const bookingTreatmentRouter = require("./Routes/BookingTreatment/BookingTreatment");
 const myAppointmentRouter = require("./Routes/MyAppointment/MyAppointment");
 const allUsersRouter = require("./Routes/allUsers/allUsers");
+const jwtRouter = require("./Routes/JWT/jwt");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -34,6 +35,8 @@ mongoose
 app.get("/", (req, res) => {
   res.send("hello");
 });
+// jwt router
+app.use("/jwt", jwtRouter);
 
 // appointment Options Router
 app.use("/appointmentOptions", appointmentOptionsRouter);
