@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
           .json({ error: "You Already booked Appointment this time slot" });
       }
       await newBooking.save();
-      res.status(500).json({
+      res.status(200).json({
         result: "Booking Confirmed",
       });
     }

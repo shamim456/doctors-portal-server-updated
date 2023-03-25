@@ -10,6 +10,7 @@ const notFoundErrorHandler = require("./Handler/Error_Handler/notFoundErrorHandl
 const appointmentOptionsRouter = require("./Routes/AppointmentOptions/appointmentOptions");
 const bookingTreatmentRouter = require("./Routes/BookingTreatment/BookingTreatment");
 const myAppointmentRouter = require("./Routes/MyAppointment/MyAppointment");
+const allUsersRouter = require("./Routes/allUsers/allUsers");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -42,6 +43,9 @@ app.use("/bookingTreatment", bookingTreatmentRouter);
 
 // my Appointment router
 app.use("/myAppointment", myAppointmentRouter);
+
+// all user route
+app.use("/allUsers", allUsersRouter);
 
 // 404 error handler
 app.use(notFoundErrorHandler);
