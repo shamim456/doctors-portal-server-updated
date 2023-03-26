@@ -13,6 +13,7 @@ const myAppointmentRouter = require("./Routes/MyAppointment/MyAppointment");
 const allUsersRouter = require("./Routes/allUsers/allUsers");
 // const jwtRouter = require("./Routes/JWT/jwt");
 const jwtToken = require("./Routes/jwtToken/jwtToken");
+const makeAdminRoute = require("./Routes/MakeAdmin/MakeAdmin");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -52,6 +53,9 @@ app.use("/myAppointment", myAppointmentRouter);
 
 // all user route
 app.use("/allUsers", allUsersRouter);
+
+// make admin route
+app.use("/user", makeAdminRoute);
 
 // 404 error handler
 app.use(notFoundErrorHandler);

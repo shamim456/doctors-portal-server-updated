@@ -6,6 +6,8 @@ const router = express.Router();
 // internal import
 const usersSchema = require("../../Schemas/usersSchema/usersSchema");
 const Users = mongoose.model("user", usersSchema);
+const verifyJwt = require("../../Handler/verifyJWT/verifyJwt");
+const { ObjectId } = require("mongodb");
 
 // router.post("/", async (req, res) => {
 //   console.dir(res.headersSent)
@@ -50,6 +52,20 @@ router.get("/", async (req, res) => {
     //   error: "There Was An Server Side Error",
     // });
   }
+});
+
+// make admin route
+router.put("/users/admin/:id", async (req, res) => {
+  const id = req.params.id;
+  const filter = { _id: ObjectId(id) };
+  const options = { upsert: true };
+  const updatedDoc = {
+    $set: {
+      role: "admin",
+    },
+  };
+  const result = await Users.updateOne(filter, updatedDoc, options);
+  res.send(result);
 });
 
 module.exports = router;
