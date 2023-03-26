@@ -12,14 +12,14 @@ function verifyJWT(req, res, next) {
 
   jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
     if (err) {
-      console.log("err");
+      console.log(err + 'verify jwt route');
       return next();
     }
+    console.dir(res.headersSent);
     req.decoded = decoded;
+
     next();
   });
-
-  //   next();
 }
 
 module.exports = verifyJWT;

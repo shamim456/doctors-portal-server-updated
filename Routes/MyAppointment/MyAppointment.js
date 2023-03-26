@@ -13,7 +13,6 @@ const BookingTreatment = mongoose.model(
 
 router.get("/", jwt, async (req, res) => {
   const patientEmailQuery = req.query.email;
-  console.log(patientEmailQuery);
   try {
     const myAppointment = await BookingTreatment.find({
       patientEmail: patientEmailQuery,
@@ -22,9 +21,9 @@ router.get("/", jwt, async (req, res) => {
       result: myAppointment,
     });
   } catch (err) {
-    res.status(500).json({
-      error: "There Was An Server Side Error",
-    });
+    // res.status(500).json({
+    //   error: "There Was An Server Side Error",
+    // });
   }
 });
 

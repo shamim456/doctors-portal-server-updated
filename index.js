@@ -11,7 +11,8 @@ const appointmentOptionsRouter = require("./Routes/AppointmentOptions/appointmen
 const bookingTreatmentRouter = require("./Routes/BookingTreatment/BookingTreatment");
 const myAppointmentRouter = require("./Routes/MyAppointment/MyAppointment");
 const allUsersRouter = require("./Routes/allUsers/allUsers");
-const jwtRouter = require("./Routes/JWT/jwt");
+// const jwtRouter = require("./Routes/JWT/jwt");
+const jwtToken = require("./Routes/jwtToken/jwtToken");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -36,7 +37,9 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 // jwt router
-app.use("/jwt", jwtRouter);
+// app.use("/jwt", jwtRouter);
+
+app.use("/jwtToken", jwtToken);
 
 // appointment Options Router
 app.use("/appointmentOptions", appointmentOptionsRouter);

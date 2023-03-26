@@ -21,23 +21,16 @@ router.post("/", async (req, res) => {
     if (alreadyBooked.length) {
       return res.status(401).json({ error: "fuck You bitch" });
     } else {
-      const bookingSlot = await BookingTreatment.find({
-        slot: newBooking.slot,
-      });
-      if (bookingSlot.length) {
-        return res
-          .status(401)
-          .json({ error: "You Already booked Appointment this time slot" });
-      }
       await newBooking.save();
       res.status(200).json({
         result: "Booking Confirmed",
       });
     }
   } catch (err) {
-    res.status(500).json({
-      error: "There Was An Server Side Error",
-    });
+    console.log(err + 'booking treatment route')
+    // res.status(500).json({
+    //   error: "There Was An Server Side Error",
+    // });
   }
 });
 

@@ -60,9 +60,10 @@ router.get("/", async (req, res) => {
       result: availableOptions,
     });
   } catch (err) {
-    res.status(500).json({
-      error: "There Was An Server Side Error",
-    });
+    console.log(err + 'appoint Option Route')
+    // res.status(500).json({
+    //   error: "There Was An Server Side Error",
+    // });
   }
 });
 
