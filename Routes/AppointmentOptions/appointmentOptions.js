@@ -60,10 +60,27 @@ router.get("/", async (req, res) => {
       result: availableOptions,
     });
   } catch (err) {
-    console.log(err + 'appoint Option Route')
+    console.log(err + "appoint Option Route");
     // res.status(500).json({
     //   error: "There Was An Server Side Error",
     // });
+  }
+});
+
+router.get("/Specialty", async (req, res) => {
+  try {
+    const Specialty = await availableAppointment.aggregate([
+      {
+        $project: {
+          name: 1,
+        },
+      },
+    ]);
+    res.status(200).json({
+      result: Specialty,
+    });
+  } catch (err) {
+    console.log(err);
   }
 });
 

@@ -6,10 +6,6 @@ function verifyJWT(req, res, next) {
   }
 
   const token = authHeader.split(" ")[1];
-
-  //   console.log("ball..................." + token);
-  //   console.log("fuck.............." + process.env.SECRET_KEY);
-
   jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
     if (err) {
       console.log(err + "verify jwt route");

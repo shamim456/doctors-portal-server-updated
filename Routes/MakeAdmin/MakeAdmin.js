@@ -9,7 +9,18 @@ const Users = mongoose.model("user", usersSchema);
 const verifyJwt = require("../../Handler/verifyJWT/verifyJwt");
 const { ObjectId } = require("mongodb");
 
-router.put("/admin/:id", verifyJwt, async (req, res) => {
+// is admin checking route
+router.get("/admin/:email", async (req, res) => {
+  const email = req.params.email;
+  console.log(email);
+  const query = { email };
+  const user = await Users.findOne(query);
+  console.log(user);
+  res.send({ isAdmin: user?.role === "admin" });
+});
+
+// protect with jwt
+router.put("/admin/:id", async (req, res) => {
   console.log(req.decoded);
   const decodedEmail = req.decoded.email;
   const query = { email: decodedEmail };
@@ -17,6 +28,7 @@ router.put("/admin/:id", verifyJwt, async (req, res) => {
   if (user?.role !== "admin") {
     return res.status(403).json({
       error: "forbidden access",
+      verifyJwt,
     });
   }
 
