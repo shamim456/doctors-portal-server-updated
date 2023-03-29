@@ -34,4 +34,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const result = await availableDoctors.deleteOne({ _id: id });
+    console.log(result);
+    res.status(200).json({
+      result: "Remove Doctor Successfully",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
