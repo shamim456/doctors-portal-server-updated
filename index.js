@@ -14,7 +14,7 @@ const allUsersRouter = require("./Routes/allUsers/allUsers");
 // const jwtRouter = require("./Routes/JWT/jwt");
 const jwtToken = require("./Routes/jwtToken/jwtToken");
 const makeAdminRoute = require("./Routes/MakeAdmin/MakeAdmin");
-const doctorsRoute = require("./Routes/AddedDoctorRoute/AddedDoctorRoute");
+const doctorsRoute = require("./Routes/DoctorRoute/DoctorRoute");
 
 const port = process.env.PORT || 5000;
 const app = express();

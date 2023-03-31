@@ -34,4 +34,16 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const date = req.query.date;
+    const result = await BookingTreatment.find({ appoinmentDate: date });
+    res.status(200).json({
+      result: result,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
