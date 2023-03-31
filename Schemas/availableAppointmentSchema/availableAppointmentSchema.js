@@ -9,6 +9,10 @@ const availableAppointmentSchema = mongoose.Schema({
     type: Array,
     required: true,
   },
+  Price: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = availableAppointmentSchema;

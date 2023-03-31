@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 // internal import
 const BookingTreatmentSchema = require("../../Schemas/BookingTreatmentSchema/BookingTreatmentSchema.js");
+const { ObjectId } = require("mongodb");
 const BookingTreatment = mongoose.model(
   "booking_treatment",
   BookingTreatmentSchema
@@ -38,6 +39,17 @@ router.get("/", async (req, res) => {
   try {
     const date = req.query.date;
     const result = await BookingTreatment.find({ appoinmentDate: date });
+    res.status(200).json({
+      result: result,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await BookingTreatment.findOne({ _id: new ObjectId(id) });
     res.status(200).json({
       result: result,
     });

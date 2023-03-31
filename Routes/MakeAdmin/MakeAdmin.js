@@ -20,15 +20,15 @@ router.get("/admin/:email", async (req, res) => {
 });
 
 // protect with jwt
-router.put("/admin/:id", async (req, res) => {
+router.put("/admin/:id",verifyJwt, async (req, res) => {
   console.log(req.decoded);
-  const decodedEmail = req.decoded.email;
+  const decodedEmail = req?.decoded.email;
   const query = { email: decodedEmail };
   const user = await Users.findOne(query);
   if (user?.role !== "admin") {
     return res.status(403).json({
       error: "forbidden access",
-      verifyJwt,
+      
     });
   }
 

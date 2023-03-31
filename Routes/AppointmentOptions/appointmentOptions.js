@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 // internal import
 const availableAppointmentSchema = require("../../Schemas/availableAppointmentSchema/availableAppointmentSchema");
-
+const jwt = require("../../Handler/verifyJWT/verifyJwt");
 const availableAppointment = new mongoose.model(
   "Available_Appointment",
   availableAppointmentSchema
@@ -37,6 +37,7 @@ router.get("/", async (req, res) => {
         $project: {
           name: 1,
           slots: 1,
+          Price: 1,
           booked: {
             $map: {
               input: "$booked",
@@ -49,6 +50,7 @@ router.get("/", async (req, res) => {
       {
         $project: {
           name: 1,
+          Price:1,
           slots: {
             $setDifference: ["$slots", "$booked"],
           },
@@ -83,5 +85,28 @@ router.get("/Specialty", async (req, res) => {
     console.log(err);
   }
 });
+
+// temporary use
+
+// router.put("/addPrices", async (req, res) => {
+//   try {
+//     const filter = {};
+//     const options = { upsert: true };
+//     const updatedDoc = {
+//       $set: {
+//         Price: 99,
+//       },
+//     };
+//     const result = await availableAppointment.updateMany(
+//       filter,
+//       updatedDoc,
+//       options
+//     );
+//     res.send(result);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error updating prices");
+//   }
+// });
 
 module.exports = router;

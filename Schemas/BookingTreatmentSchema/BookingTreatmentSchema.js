@@ -25,6 +25,9 @@ const BookingTreatmentSchema = mongoose.Schema({
     required: true,
     type: String,
   },
+  Price: {
+    type: Number,
+  },
 });
 
 module.exports = BookingTreatmentSchema;
