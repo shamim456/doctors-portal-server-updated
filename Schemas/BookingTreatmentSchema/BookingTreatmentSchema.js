@@ -28,6 +28,9 @@ const BookingTreatmentSchema = mongoose.Schema({
   Price: {
     type: Number,
   },
+  paid: {
+    type: Boolean,
+  },
 });
 
 module.exports = BookingTreatmentSchema;

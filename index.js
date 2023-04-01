@@ -15,6 +15,7 @@ const allUsersRouter = require("./Routes/allUsers/allUsers");
 const jwtToken = require("./Routes/jwtToken/jwtToken");
 const makeAdminRoute = require("./Routes/MakeAdmin/MakeAdmin");
 const doctorsRoute = require("./Routes/DoctorRoute/DoctorRoute");
+const paymentRoute = require("./Routes/Payment/Payment");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -60,6 +61,9 @@ app.use("/user", makeAdminRoute);
 
 //doctors route
 app.use("/doctors", doctorsRoute);
+
+//payment route
+app.use("/payment", paymentRoute);
 
 // 404 error handler
 app.use(notFoundErrorHandler);
