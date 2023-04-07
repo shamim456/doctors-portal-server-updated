@@ -13,15 +13,14 @@ router.get("/", async (req, res) => {
     const user = await Users.find({ email: email });
     if (user) {
       const token = jwt.sign({ email: email }, process.env.SECRET_KEY, {
-        expiresIn: "1h",
+        expiresIn: "444441h",
       });
       res.status(200).json({
         result: token,
       });
     }
   } catch (err) {
-    console.log(err + "jwt Token Route");
-    // res.status(403).json({ error: "unauthorized access" });
+    res.status(403).json({ error: "unauthorized access" });
   }
 });
 

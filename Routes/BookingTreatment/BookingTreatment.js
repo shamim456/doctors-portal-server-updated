@@ -28,10 +28,9 @@ router.post("/", async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err + "booking treatment route");
-    // res.status(500).json({
-    //   error: "There Was An Server Side Error",
-    // });
+    res.status(500).json({
+      error: "There Was An Server Side Error",
+    });
   }
 });
 
@@ -43,7 +42,9 @@ router.get("/", async (req, res) => {
       result: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      error: err.message,
+    });
   }
 });
 router.get("/:id", async (req, res) => {
@@ -54,7 +55,9 @@ router.get("/:id", async (req, res) => {
       result: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      error: err.message,
+    });
   }
 });
 

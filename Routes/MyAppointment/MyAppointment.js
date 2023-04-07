@@ -21,9 +21,9 @@ router.get("/", jwt, async (req, res) => {
       result: myAppointment,
     });
   } catch (err) {
-    // res.status(500).json({
-    //   error: "There Was An Server Side Error",
-    // });
+    res.status(500).json({
+      error: "There Was An Server Side Error",
+    });
   }
 });
 

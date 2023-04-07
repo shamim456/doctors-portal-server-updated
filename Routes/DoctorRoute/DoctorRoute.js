@@ -13,13 +13,12 @@ router.post("/", jwt, async (req, res) => {
     const doctorInfo = new availableDoctors(req.body);
     await doctorInfo.save();
     res.status(200).json({
-      result: "Booking Confirmed",
+      result: "Doctor Added Successfully",
     });
   } catch (err) {
-    console.log(err + "booking treatment route");
-    // res.status(500).json({
-    //   error: "There Was An Server Side Error",
-    // });
+    res.status(500).json({
+      error: "There Was An Server Side Error",
+    });
   }
 });
 
@@ -30,21 +29,23 @@ router.get("/", async (req, res) => {
       result: allDoctors,
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      error: err.message,
+    });
   }
 });
 
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   try {
     const result = await availableDoctors.deleteOne({ _id: id });
-    console.log(result);
     res.status(200).json({
       result: "Remove Doctor Successfully",
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      error: err.message,
+    });
   }
 });
 

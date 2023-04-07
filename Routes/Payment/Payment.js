@@ -39,8 +39,6 @@ router.post("/payments", async (req, res) => {
     },
   };
   const updatedResult = await BookingTreatment.updateOne(filter, updatedDoc);
-  console.log(updatedResult);
-  console.log(result);
   res.send(result);
 });
 
@@ -53,7 +51,9 @@ router.get("/", async (req, res) => {
       result: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      error: err.message,
+    });
   }
 });
 

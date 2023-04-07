@@ -12,23 +12,19 @@ const { ObjectId } = require("mongodb");
 // is admin checking route
 router.get("/admin/:email", async (req, res) => {
   const email = req.params.email;
-  console.log(email);
   const query = { email };
   const user = await Users.findOne(query);
-  console.log(user);
   res.send({ isAdmin: user?.role === "admin" });
 });
 
 // protect with jwt
-router.put("/admin/:id",verifyJwt, async (req, res) => {
-  console.log(req.decoded);
+router.put("/admin/:id", verifyJwt, async (req, res) => {
   const decodedEmail = req?.decoded.email;
   const query = { email: decodedEmail };
   const user = await Users.findOne(query);
   if (user?.role !== "admin") {
     return res.status(403).json({
       error: "forbidden access",
-      
     });
   }
 
@@ -42,7 +38,6 @@ router.put("/admin/:id",verifyJwt, async (req, res) => {
   };
   const result = await Users.updateOne(filter, updatedDoc, options);
   res.send(result);
-  //   res.send("hello");
 });
 
 module.exports = router;

@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
       {
         $project: {
           name: 1,
-          Price:1,
+          Price: 1,
           slots: {
             $setDifference: ["$slots", "$booked"],
           },
@@ -62,10 +62,9 @@ router.get("/", async (req, res) => {
       result: availableOptions,
     });
   } catch (err) {
-    console.log(err + "appoint Option Route");
-    // res.status(500).json({
-    //   error: "There Was An Server Side Error",
-    // });
+    res.status(500).json({
+      error: "There Was An Server Side Error",
+    });
   }
 });
 
@@ -82,7 +81,9 @@ router.get("/Specialty", async (req, res) => {
       result: Specialty,
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      error: err.message,
+    });
   }
 });
 
