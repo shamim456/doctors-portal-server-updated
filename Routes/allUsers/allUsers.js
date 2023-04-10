@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 
-// internal import
+// internal imports
 const usersSchema = require("../../Schemas/usersSchema/usersSchema");
 const Users = mongoose.model("user", usersSchema);
 const verifyJwt = require("../../Handler/verifyJWT/verifyJwt");
